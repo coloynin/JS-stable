@@ -1,0 +1,24 @@
+var xhr = new XMLHttpRequest(); // 
+
+// 前端设置是否带cookie
+xhr.withCredentials = true;
+
+xhr.open('GET', 'xxxx');
+//xhr.open('post', 'http://www.domain2.com:8080/login', true);
+
+// 如何设置请求头? xhr.setRequestHeader(header, value);
+xhr.setRequestHeader('Content-Type', 'application/json');
+
+xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){  // readyState 4 代表已向服务器发送请求
+        if(xhr.status === 200){ // status 200 代表服务器返回成功
+            console.log(xhr.responseText); // 这是返回的文本
+        } else{
+            console.log("Error: "+ xhr.status); // 
+        }
+    }
+}
+
+xhr.send(null); 
+//xhr.send('user=admin');
+// get方法 send null(亦或者不传,则直接是传递 header) ,post 的 send 则是传递值
